@@ -1,0 +1,368 @@
+/* Project Section Styling - Alternative Version */
+.folio-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 2rem 0;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .folio-list {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
+.folio-list__item {
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+    height: 400px;
+    width: 100%;
+    /* Fallback background in case image doesn't load */
+    background-color: #2a2a2a;
+    /* Essential visibility fixes */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.folio-list__item-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.folio-list__item-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.folio-list__item:hover .folio-list__item-text {
+    transform: translateY(0);
+}
+
+.folio-list__item-cat {
+    font-size: 1rem;
+    color: var(--color-1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease 0.1s;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: 500;
+}
+
+.folio-list__item:hover .folio-list__item-cat {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.folio-list__item-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease 0.2s;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 0.5rem;
+}
+
+.folio-list__item:hover .folio-list__item-title {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.folio-list__proj-link {
+    position: absolute;
+    top: 2rem;
+    right: -50px;
+    width: 45px;
+    height: 45px;
+    background: var(--color-1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    z-index: 3;
+}
+
+.folio-list__item:hover .folio-list__proj-link {
+    right: 2rem;
+}
+
+.folio-list__proj-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.folio-list__proj-link svg path {
+    fill: white;
+}
+
+/* Project Images - Removed hardcoded backgrounds since they're applied dynamically */
+/* The background images are now applied via inline styles in JavaScript */
+
+/* Project Tabs Styles */
+.project-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 2px solid var(--color-1);
+    color: var(--color-1);
+    padding: 12px 24px;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    min-width: 150px;
+}
+
+.tab-btn:hover {
+    background: var(--color-1);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tab-btn.active {
+    background: var(--color-1);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tab-content {
+    display: none;
+    min-height: 200px;
+}
+
+.tab-content.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Responsive tabs */
+@media (max-width: 768px) {
+    .project-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+}
+
+    .tab-btn {
+        width: 200px;
+        text-align: center;
+    }
+}
+
+/* Modal Popup Responsive Fix */
+.modal-popup {
+    max-width: 95vw !important;
+    width: 100%;
+    min-width: 0 !important;
+    margin: 40px auto !important;
+    background: #181818;
+    border-radius: 0 !important;
+    position: relative;
+    z-index: 1002;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.modal-popup video,
+.modal-popup img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .modal-popup {
+        max-width: 98vw;
+        width: 98vw;
+        min-width: 0;
+        margin: 10px auto;
+        padding: 1rem 0.5rem;
+        border-radius: 8px;
+        left: 0;
+        right: 0;
+    }
+    .modal-popup__desc,
+    .media-content {
+        padding: 0 !important;
+    }
+}
+
+/* Ensure modal overlay covers the whole screen */
+.modals-container {
+    position: fixed !important;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1001;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    } 
+
+.modal-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.modal-close {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.certificate-item {
+    background: #232323;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.certificate-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--color-1, #6C63FF);
+}
+
+.certificate-item p {
+    margin-bottom: 1rem;
+    color: #bbb;
+}
+
+.certificate-item a {
+    color: #6C63FF;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.certificates-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.certificates-list li {
+    display: flex;
+    align-items: center;
+    background: #232323;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.cert-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 1rem;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.certificates-list span {
+    flex: 1;
+    color: #fff;
+}
+
+.certificates-list a {
+    color: #6C63FF;
+    text-decoration: underline;
+    font-weight: 500;
+    margin-left: 1rem;
+    } 
+
+.certificates-skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-items: center;
+}
+
+.certificate-skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #232323;
+    border-radius: 8px;
+    padding: 1.2rem 1rem;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.certificate-skill-item:hover {
+    box-shadow: 0 4px 16px rgba(108,99,255,0.15);
+    transform: translateY(-4px) scale(1.04);
+}
+
+.cert-skill-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 0.7rem;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.cert-skill-name {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    } 
